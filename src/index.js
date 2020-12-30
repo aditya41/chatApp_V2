@@ -23,6 +23,10 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         io.emit('A user has left')
     })
+    socket.on('location', (message) => {
+        console.log(message)
+        io.emit('message', `https://google.com/maps?q=${message.latitude},${message.longitude}`)
+    })
 })
 
 server.listen(port, () => {
